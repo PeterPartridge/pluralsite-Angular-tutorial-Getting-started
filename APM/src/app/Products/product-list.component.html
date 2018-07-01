@@ -1,44 +1,54 @@
 <div class="panel panel-primary">
     <div class="panel-heading">
-        <div class="panel-body">
+        {{pageTitle}}
+    </div>
+    <div class="panel-body">
+        <div class="row">
+            <div class="col-md-2">Filter by:</div>
             <div class="row">
-                <div class="col-md-2">Filter by:</div>
-                <div class="row">
-                    <div class="col-md-6">
-                        <h3>Filtered by: </h3>
-                    </div>
+                <div class="col-md-6">
+                    <h3>Filtered by: </h3>
                 </div>
             </div>
         </div>
+        <div class="table-resoponsive">
+            <table class="table" *ngIf='products && products.length>0; else noData'>
+                <thead>
+                    <tr>
+                        <th>
+                            <button class="btn btn-primary">show Image</button>
+                        </th>
+                        <th>
+                            product
+                        </th>
+                        <th>
+                            Code
+                        </th>
+                        <th>
+                            Availblilty
+                        </th>
+                        <th>
+                            price
+                        </th>
+                        <th>
+                            5 star rating
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let product of products">
+                        <td></td>
+                        <td>{{product.productName}}</td>
+                        <td>{{product.productCode}}</td>
+                        <td>{{product.releaseDate}}</td>
+                        <td>£{{product.price}}</td>
+                        <td>{{product.starRating}}</td>
+                    </tr>
+                </tbody>
+            </table>
+            <ng-template #noData>
+                <b>No Data was found</b>
+            </ng-template>
+        </div>
     </div>
-    <div class="table-resoponsive">
-        <table class="table">
-            <thead>
-                <tr>
-                    <th>
-                        <button class="btn btn-primary">show Image</button>
-                    </th>
-                    <th>
-                        product
-                    </th>
-                    <th>
-                        Code
-                    </th>
-                    <th>
-                        Availblilty
-                    </th>
-                    <th>
-                        price
-                    </th>
-                    <th>
-                        5 star rating
-                    </th>
-                </tr>
-            </thead>
-            <tbody>
-
-            </tbody>
-        </table>
-    </div>
-
 </div>
