@@ -1,14 +1,36 @@
-import { Component } from "@angular/core";
+import { Component, OnInit } from "@angular/core";
+import {IProduct} from "./Product"
+
 
 @Component({
     selector: "pm-products",
-    templateUrl: "./product-list.component.html"
+    templateUrl: "./product-list.component.html",
+    styleUrls:["./product-list.component.css"]
 
 })
 
-export class ProductListComponent {
-    pageTitle: string = 'Product List'
-    products: any[] = [
+export class ProductListComponent implements OnInit {
+ 
+   
+    pageTitle: string = 'Product List';
+    imageWidth: number= 50;
+    imageMargin: number = 2;
+    showImage: boolean = false;
+    
+   
+    private _listFilter: string; 
+    public get listFilter(): string {
+        return this._listFilter;
+    }
+    public set listFilter(value: string) {
+        this._listFilter = value;
+        this.filteredProducts = this.listFilter? this.performFilter(this.listFilter) : this.products;
+    }
+    // new product list
+    filteredProducts : IProduct[];
+
+//list data
+    products: IProduct[] = [
         {
             "productId": 1,
             "productName": "Leaf Rake",
@@ -35,9 +57,31 @@ export class ProductListComponent {
             "productCode": "TBX-0048",
             "releaseDate": "May 21, 2016",
             "description": "Curved claw steel hammer",
-            "price": 8.9,
-            "starRating": 4.8,
+            "price": 8.90,
+            "starRating": 4.5,
             "imageUrl": "http://openclipart.org/image/300px/svg_to_png/73/rejon_Hammer.png"
         },
-    ]
+    ];
+    // methods
+constructor(){
+    this.filteredProducts = this.products;
+    this.listFilter = "cart"
+}
+
+
+    ngOnInit(): void {
+        console.log("intiate using OnInit")
+    }
+    toggleImage() : void {
+        this.showImage = !this.showImage;
+    }
+    performFilter(filterBy:string): IProduct[] {
+        filterBy = filterBy.toLocaleLowerCase();
+        return this.products.filter(
+          // for each product in products 
+          (product:IProduct) => 
+          //convert to lower case and check if the filter string is in the array.
+            product.productName.toLocaleLowerCase().indexOf(filterBy) != -1
+           )
+      }
 }
