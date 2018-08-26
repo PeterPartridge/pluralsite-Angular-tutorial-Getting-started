@@ -1,11 +1,11 @@
-import { Component } from "@angular/core";
+import { Component } from '@angular/core';
 
 @Component({ // '' allows mutiline html in es 2015
-  selector: "pm-root", 
-  templateUrl:"app.component.html"
+  selector: 'pm-root',
+  templateUrl: 'app.component.html'
 
 })
-export class AppComponent{
-  pageTitle: string = "Acme Product Mangment";
-  title: string = "World"
+export class AppComponent {
+  pageTitle: string = 'Acme Product Mangment';
+  title: string = 'World';
 }
