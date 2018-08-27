@@ -16,6 +16,7 @@ private productUrl = 'api/products/products.json';
          catchError(this.handleError)
         );
     }
+
 private handleError(err: HttpErrorResponse) {
     let errorMessage = '';
     if (err.error instanceof ErrorEvent) {

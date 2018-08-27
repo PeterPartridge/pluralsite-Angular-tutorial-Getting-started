@@ -1,8 +1,21 @@
-
 <div class='card' *ngIf='product'>
-  <div class='card-header'>
-    {{pageTitle + ': ' + product.productName}}
+  <div class='card-header '>
+    {{product.productName}}
+     <div><pm-star [rating]='product.starRating'
+      (ratingClicked)='onRatingClicked($event)'></pm-star></div>
+    <p>£{{product.price}} </p>
   </div>
-
-  <a class="btn btn-outline-dark" (click)='onBack()'>Back</a>
+  <div class='card-body card-group card-columns'>
+    <div class=''>
+    <p>Description: {{product.description}}</p>
+    <p>Release date {{product.releaseDate}}</p>
+    <p>{{product.productCode}}</p>
+    </div>
+  <div class=''>
+    <img class='card-img-left' [src]='product.imageUrl' [title]='product.productName'>
+</div>
+  </div>
+  <div class='card-footer'>
+  <a class='btn btn-outline-dark' (click)='onBack()'>Back</a>
+</div>
 </div>
